@@ -18,7 +18,10 @@ def emotion_predictor(text_to_analyse):
     formatted_response = json.loads(response.text)
 
     # Extracting emotion from the response
-    emotion = formatted_response['emotionPredictions']
+    emotions = formatted_response['emotionPredictions'][0]['emotion']
 
+    for emotion in emotions:
+        print (emotion, ":", emotions[emotion])
+    
     # Returning a dictionary containing emotion analysis results
-    return {'emotion': emotion}
+    #return {'emotion': emotions}
