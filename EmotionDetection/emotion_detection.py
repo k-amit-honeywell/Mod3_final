@@ -20,8 +20,16 @@ def emotion_predictor(text_to_analyse):
     # Extracting emotion from the response
     emotions = formatted_response['emotionPredictions'][0]['emotion']
 
+    max_emotion = 0
+    max_emotion_dict = {}
+
     for emotion in emotions:
+        if (emotions[emotion] > max_emotion):
+            max_emotion = emotions[emotion]
+            max_emotion_dict = emotion
+
         print (emotion, ":", emotions[emotion])
+    print ('dominant_emotion', ":", max_emotion_dict)    
     
     # Returning a dictionary containing emotion analysis results
-    #return {'emotion': emotions}
+    return {'emotion': max_emotion_dict, 'score' : max_emotion}
